@@ -66,9 +66,9 @@ class SmallBall(Object):
         self.image = load_image('ball21x21.png')
 
     def collide(self):
-        if(self.y <= 50):
+        if(self.y <= 60):
             self.fall = False
-            self.y = 50
+            self.y = 60
 
 class BigBall(Object):
     def __init__(self):
@@ -76,9 +76,9 @@ class BigBall(Object):
         self.image = load_image('ball41x41.png')
 
     def collide(self):
-        if(self.y <= 60):
+        if(self.y <= 70):
             self.fall = False
-            self.y = 60
+            self.y = 70
 
 def handle_events():
     global running
@@ -99,8 +99,10 @@ def reset_world():
 
     grass = Grass()
     world.append(grass)
+    balls = [SmallBall() if random.randint(0, 1) == 0 else BigBall() for _ in range(20)]
     zombie = Zombie()
     world.append(zombie)
+    world += balls
     team = [boy() for i in range(11)]
     world += team
     pass
