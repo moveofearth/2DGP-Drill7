@@ -41,6 +41,25 @@ class Zombie:
         frame_height = self.image.h
         self.image.clip_draw(self.frame * frame_width, 0, frame_width, frame_height, self.x, self.y, frame_width // 2, frame_height // 2)
 
+class Object:
+    def __init__(self):
+        self.x, self.y = random.randint(0, 800), 599
+        self.image = None
+        self.speed = random.randint(1, 10)
+        self.fall = True
+
+    def collide(self):
+        pass
+
+    def update(self):
+        if self.fall:
+            self.collide()
+            self.y -= self.speed
+
+    def draw(self):
+        if self.image:
+            self.image.draw(self.x, self.y)
+
 def handle_events():
     global running
     events = get_events()
