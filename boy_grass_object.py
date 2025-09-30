@@ -60,6 +60,16 @@ class Object:
         if self.image:
             self.image.draw(self.x, self.y)
 
+class SmallBall(Object):
+    def __init__(self):
+        super().__init__()
+        self.image = load_image('ball21x21.png')
+
+    def collide(self):
+        if(self.y <= 50):
+            self.fall = False
+            self.y = 50
+
 def handle_events():
     global running
     events = get_events()
